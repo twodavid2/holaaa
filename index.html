@@ -1,58 +1,91 @@
+<!-- rosa.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Rosa que se abre</title>
+  <title>Rosa ancha y centrada</title>
   <style>
-    .rosa-btn {
-      background: #e75480;
-      border: none;
-      border-radius: 50%;
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #fff0f6;
+    }
+    .rosa {
+      width: 220px;
+      height: 140px;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .petalo {
+      position: absolute;
+      width: 110px;
+      height: 110px;
+      background: pink;
+      border-radius: 110px 110px 0 0;
+      top: 15px;
+      left: 55px;
+      transform-origin: bottom center;
+      transition: transform 0.6s;
+      opacity: 0.9;
+    }
+    .petalo1 { transform: rotate(0deg); }
+    .petalo2 { transform: rotate(72deg); }
+    .petalo3 { transform: rotate(144deg); }
+    .petalo4 { transform: rotate(216deg); }
+    .petalo5 { transform: rotate(288deg); }
+    .centro {
+      position: absolute;
       width: 80px;
       height: 80px;
-      font-size: 2.5rem;
+      background: #e75480;
+      border-radius: 50%;
+      top: 40px;
+      left: 70px;
+      z-index: 2;
+      box-shadow: 0 0 10px #e75480;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: white;
-      cursor: pointer;
-      transition: box-shadow 0.2s, transform 0.2s;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      font-weight: bold;
+      font-size: 20px;
+      text-align: center;
+      transition: background 0.6s;
     }
-    .rosa-btn:active {
-      transform: scale(0.95);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    .texto-rosa {
+      opacity: 0;
+      transition: opacity 0.6s;
+      pointer-events: none;
     }
-    .contenido {
-      display: none;
-      margin-top: 20px;
-      padding: 15px;
-      background: #fff0f6;
-      border-radius: 10px;
-      border: 1px solid #e75480;
-      color: #e75480;
-      font-size: 1.2rem;
-      max-width: 300px;
-    }
-    .contenido.abierto {
-      display: block;
-      animation: abrir 0.5s;
-    }
-    @keyframes abrir {
-      from { opacity: 0; transform: scale(0.8);}
-      to { opacity: 1; transform: scale(1);}
+    .rosa.abierta .petalo1 { transform: rotate(-40deg) translateY(-50px); }
+    .rosa.abierta .petalo2 { transform: rotate(32deg) translateY(-50px); }
+    .rosa.abierta .petalo3 { transform: rotate(104deg) translateY(-50px); }
+    .rosa.abierta .petalo4 { transform: rotate(176deg) translateY(-50px); }
+    .rosa.abierta .petalo5 { transform: rotate(248deg) translateY(-50px); }
+    .rosa.abierta .texto-rosa {
+      opacity: 1;
+      pointer-events: auto;
     }
   </style>
 </head>
 <body>
-  <button class="rosa-btn" onclick="abrirRosa()">
-    🌹
-  </button>
-  <div id="rosaContenido" class="contenido">
-    ¡holaa andrea<br>
-    toma una rosa por lesbi👁👄👁.
+  <div class="rosa" onclick="this.classList.toggle('abierta')">
+    <div class="petalo petalo1"></div>
+    <div class="petalo petalo2"></div>
+    <div class="petalo petalo3"></div>
+    <div class="petalo petalo4"></div>
+    <div class="petalo petalo5"></div>
+    <div class="centro">
+      <span class="texto-rosa">¡Te quiero!</span>
+    </div>
   </div>
-  <script>
-    function abrirRosa() {
-      document.getElementById('rosaContenido').classList.toggle('abierto');
-    }
-  </script>
+  <p style="text-align:center;">Haz clic en la rosa para abrirla o cerrarla.</p>
 </body>
 </html>
